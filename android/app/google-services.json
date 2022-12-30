@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "946130906186",
+    "project_id": "zartech-e112e",
+    "storage_bucket": "zartech-e112e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946130906186:android:f8657ae5803fcfb3618ab3",
+        "android_client_info": {
+          "package_name": "com.ajmal.machinetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946130906186-ol2htkgb4fskc6hqdfggti2n5g4o83la.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVD9MguJLxmhB_1EgTaWlPz17fbhUcEZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946130906186-ol2htkgb4fskc6hqdfggti2n5g4o83la.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
