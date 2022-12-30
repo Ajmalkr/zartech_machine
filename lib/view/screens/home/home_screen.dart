@@ -183,34 +183,18 @@ class HomeScreen extends StatelessWidget {
                                           horizontal: 10, vertical: 10),
                                       decoration: BoxDecoration(
                                           border: Border(bottom: BorderSide())),
-                                      child: Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: 20,
-                                              height: 20,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: dishesModel
-                                                                  .tableMenuList[
-                                                                      i]
-                                                                  .categoryDishes[
-                                                                      n]
-                                                                  .dishType ==
-                                                              2
-                                                          ? Colors.green
-                                                          : Colors.red,
-                                                      width: 2)),
-                                              child: Container(
-                                                width: 10,
-                                                height: 10,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
                                                     color: dishesModel
                                                                 .tableMenuList[
                                                                     i]
@@ -220,165 +204,167 @@ class HomeScreen extends StatelessWidget {
                                                             2
                                                         ? Colors.green
                                                         : Colors.red,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                              ),
+                                                    width: 2)),
+                                            child: Container(
+                                              width: 10,
+                                              height: 10,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  color: dishesModel
+                                                              .tableMenuList[i]
+                                                              .categoryDishes[n]
+                                                              .dishType ==
+                                                          2
+                                                      ? Colors.green
+                                                      : Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
                                             ),
-                                            SizedBox(
-                                              width: Get.width * 0.7,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  SizedBox(
-                                                    // width: Get.width * 0.4,
-                                                    child: Text(
-                                                      "${dishesModel.tableMenuList[i].categoryDishes[n].dishName}",
+                                          ),
+                                          SizedBox(
+                                            width: Get.width * 0.7,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  // width: Get.width * 0.4,
+                                                  child: Text(
+                                                    "${dishesModel.tableMenuList[i].categoryDishes[n].dishName}",
+                                                    style:
+                                                        robotoMedium.copyWith(
+                                                            color:
+                                                                Colors.black54,
+                                                            fontSize: 17),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "${dishesModel.tableMenuList[i].categoryDishes[n].dishPrice} INR",
                                                       style:
                                                           robotoMedium.copyWith(
                                                               color: Colors
                                                                   .black54,
                                                               fontSize: 17),
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "${dishesModel.tableMenuList[i].categoryDishes[n].dishPrice} INR",
-                                                        style: robotoMedium
-                                                            .copyWith(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontSize: 17),
-                                                      ),
-                                                      Text(
-                                                        "${dishesModel.tableMenuList[i].categoryDishes[n].dishCalories} Calories",
-                                                        style: robotoMedium
-                                                            .copyWith(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontSize: 17),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Text(
-                                                    "${dishesModel.tableMenuList[i].categoryDishes[n].dishDescription}",
-                                                    style:
-                                                        robotoMedium.copyWith(
-                                                            color:
-                                                                Colors.black38,
-                                                            fontSize: 15),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  GetBuilder<CartController>(
-                                                      builder:
-                                                          (cartController) {
-                                                    return Container(
-                                                      height: Get.height * 0.05,
-                                                      width: Get.width * 0.35,
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 15),
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(20),
-                                                          color: Colors.green),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          InkWell(
-                                                            onTap: () {
-                                                              // cartController
-                                                              //     .removeFromCart(
-                                                              //         n);
-                                                              cartController.updateCart(
-                                                                  dishesModel
-                                                                      .tableMenuList[
-                                                                          i]
-                                                                      .categoryDishes[n],
-                                                                  false);
-                                                            },
-                                                            child: Icon(
-                                                              Icons.remove,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "${dishesModel.tableMenuList[i].categoryDishes[n].quantity}",
-                                                            style: robotoMedium
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        18),
-                                                          ),
-                                                          InkWell(
-                                                            onTap: () {
-                                                              cartController.updateCart(
-                                                                  dishesModel
-                                                                      .tableMenuList[
-                                                                          i]
-                                                                      .categoryDishes[n],
-                                                                  true);
-                                                            },
-                                                            child: Icon(
-                                                              Icons.add,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  }),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  if (dishesModel
-                                                          .tableMenuList[i]
-                                                          .categoryDishes[n]
-                                                          .addonCat
-                                                          .length >
-                                                      0)
                                                     Text(
-                                                      "Customization Available",
+                                                      "${dishesModel.tableMenuList[i].categoryDishes[n].dishCalories} Calories",
                                                       style:
                                                           robotoMedium.copyWith(
                                                               color: Colors
-                                                                  .redAccent,
-                                                              fontSize: 16.5),
+                                                                  .black54,
+                                                              fontSize: 17),
+                                                    )
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Text(
+                                                  "${dishesModel.tableMenuList[i].categoryDishes[n].dishDescription}",
+                                                  style: robotoMedium.copyWith(
+                                                      color: Colors.black38,
+                                                      fontSize: 15),
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                GetBuilder<CartController>(
+                                                    builder: (cartController) {
+                                                  return Container(
+                                                    height: Get.height * 0.05,
+                                                    width: Get.width * 0.35,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        color: Colors.green),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            // cartController
+                                                            //     .removeFromCart(
+                                                            //         n);
+                                                            cartController.updateCart(
+                                                                dishesModel
+                                                                    .tableMenuList[
+                                                                        i]
+                                                                    .categoryDishes[n],
+                                                                false);
+                                                          },
+                                                          child: Icon(
+                                                            Icons.remove,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "${dishesModel.tableMenuList[i].categoryDishes[n].quantity}",
+                                                          style: robotoMedium
+                                                              .copyWith(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 18),
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            cartController.updateCart(
+                                                                dishesModel
+                                                                    .tableMenuList[
+                                                                        i]
+                                                                    .categoryDishes[n],
+                                                                true);
+                                                          },
+                                                          child: Icon(
+                                                            Icons.add,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                ],
-                                              ),
+                                                  );
+                                                }),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                if (dishesModel
+                                                        .tableMenuList[i]
+                                                        .categoryDishes[n]
+                                                        .addonCat
+                                                        .length >
+                                                    0)
+                                                  Text(
+                                                    "Customization Available",
+                                                    style:
+                                                        robotoMedium.copyWith(
+                                                            color: Colors
+                                                                .redAccent,
+                                                            fontSize: 16.5),
+                                                  ),
+                                              ],
                                             ),
-                                            CustomImage(
-                                              image:
-                                                  "${dishesModel.tableMenuList[i].categoryDishes[n].dishImage}",
-                                              width: 50,
-                                              height: 50,
-                                            )
-                                            // Image.asset(
-                                            //   "assets/image/logo.png",
-                                            //   scale: 5,
-                                            // )
-                                          ],
-                                        ),
+                                          ),
+                                          CustomImage(
+                                            image:
+                                                "${dishesModel.tableMenuList[i].categoryDishes[n].dishImage}",
+                                            width: 50,
+                                            height: 50,
+                                          )
+                                        ],
                                       ),
                                     )
                                 ],

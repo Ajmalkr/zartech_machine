@@ -15,27 +15,29 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-          title: 'my_cart'.tr,
-          isBackButtonExist: (!fromNav)),
-      floatingActionButton: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, RouteHelper.getOrderSuccessRoute());
-        },
-        child: Container(
-          height: 50,
-          width: Get.width * 0.8,
-          margin: EdgeInsets.only(bottom: 10),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: Colors.green[900],
-              borderRadius: BorderRadius.circular(40)),
-          child: Text(
-            "Place Order",
-            style: robotoRegular.copyWith(color: Colors.white, fontSize: 18),
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: 'My Cart', isBackButtonExist: (!fromNav)),
+      floatingActionButton: Get.find<CartController>().cartList.length > 0
+          ? InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                    context, RouteHelper.getOrderSuccessRoute());
+              },
+              child: Container(
+                height: 50,
+                width: Get.width * 0.8,
+                margin: EdgeInsets.only(bottom: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.green[900],
+                    borderRadius: BorderRadius.circular(40)),
+                child: Text(
+                  "Place Order",
+                  style:
+                      robotoRegular.copyWith(color: Colors.white, fontSize: 18),
+                ),
+              ),
+            )
+          : SizedBox(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: GetBuilder<CartController>(
         builder: (cartController) {
@@ -84,120 +86,117 @@ class CartScreen extends StatelessWidget {
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         decoration:
                             BoxDecoration(border: Border(bottom: BorderSide())),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 20,
-                                height: 20,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: dish[i].dishType == 2
-                                            ? Colors.green
-                                            : Colors.red,
-                                        width: 2)),
-                                child: Container(
-                                  width: 10,
-                                  height: 10,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
                                       color: dish[i].dishType == 2
                                           ? Colors.green
                                           : Colors.red,
-                                      borderRadius: BorderRadius.circular(20)),
-                                ),
+                                      width: 2)),
+                              child: Container(
+                                width: 10,
+                                height: 10,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: dish[i].dishType == 2
+                                        ? Colors.green
+                                        : Colors.red,
+                                    borderRadius: BorderRadius.circular(20)),
                               ),
-                              SizedBox(
-                                width: Get.width * 0.28,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      // width: Get.width * 0.4,
-                                      child: Text(
-                                        "${dish[i].dishName}",
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.black54,
-                                            fontSize: 17),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      "${dish[i].dishPrice} INR",
+                            ),
+                            SizedBox(
+                              width: Get.width * 0.28,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    // width: Get.width * 0.4,
+                                    child: Text(
+                                      "${dish[i].dishName}",
                                       style: robotoMedium.copyWith(
                                           color: Colors.black54, fontSize: 17),
                                     ),
-                                    SizedBox(
-                                      height: 8,
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "${dish[i].dishPrice} INR",
+                                    style: robotoMedium.copyWith(
+                                        color: Colors.black54, fontSize: 17),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    "${dish[i].dishCalories} Calories",
+                                    style: robotoMedium.copyWith(
+                                        color: Colors.black54, fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            GetBuilder<CartController>(
+                                builder: (cartController) {
+                              return Container(
+                                height: Get.height * 0.05,
+                                width: Get.width * 0.3,
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.green[900]),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        // cartController
+                                        //     .removeFromCart(
+                                        //         n);
+                                        cartController.updateCart(
+                                            dish[i], false);
+                                      },
+                                      child: Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                     Text(
-                                      "${dish[i].dishCalories} Calories",
+                                      "${dish[i].quantity}",
                                       style: robotoMedium.copyWith(
-                                          color: Colors.black54, fontSize: 16),
+                                          color: Colors.white, fontSize: 16),
                                     ),
-                                    SizedBox(
-                                      height: 8,
+                                    InkWell(
+                                      onTap: () {
+                                        cartController.updateCart(
+                                            dish[i], true);
+                                      },
+                                      child: Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
-                              GetBuilder<CartController>(
-                                  builder: (cartController) {
-                                return Container(
-                                  height: Get.height * 0.05,
-                                  width: Get.width * 0.3,
-                                  padding: EdgeInsets.symmetric(horizontal: 15),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.green[900]),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          // cartController
-                                          //     .removeFromCart(
-                                          //         n);
-                                          cartController.updateCart(
-                                              dish[i], false);
-                                        },
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${dish[i].quantity}",
-                                        style: robotoMedium.copyWith(
-                                            color: Colors.white, fontSize: 16),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          cartController.updateCart(
-                                              dish[i], true);
-                                        },
-                                        child: Icon(
-                                          Icons.add,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }),
-                              Text(
-                                "${(dish[i].dishPrice * dish[i].quantity).toStringAsFixed(2)} INR",
-                                style: robotoMedium.copyWith(
-                                    color: Colors.black54, fontSize: 16),
-                              ),
-                            ],
-                          ),
+                              );
+                            }),
+                            Text(
+                              "${(dish[i].dishPrice * dish[i].quantity).toStringAsFixed(2)} INR",
+                              style: robotoMedium.copyWith(
+                                  color: Colors.black54, fontSize: 16),
+                            ),
+                          ],
                         ),
                       ),
                     Container(
